@@ -10,38 +10,64 @@ SQL Functions Used:
     - COUNT(), SUM(), AVG()
 ===============================================================================
 */
+    -- 4.1 Statistical summary — fact_sales numeric columns
+      SELECT 
+       'sales_amount' AS 'measures',
+       COUNT(*) AS row_count,
+       COUNT(CASE WHEN sales_amount IS NULL THEN 1 END) AS null_count,
+       MIN(sales_amount) AS min_val,
+       MAX(sales_amount) AS max_val,
+       CAST(AVG(sales_amount) AS FLOAT) AS avg_val,
+       ROUND(STDEV(sales_amount * 1.0), 2) AS stddev_val,
+       SUM(sales_amount) AS total_sales
+       FROM gold.facts_sales
+      UNION ALL
+      SELECT
+          'quantity',
+          COUNT(*),
+          COUNT(CASE WHEN  quantity IS NULL THEN 1 END),
+          MIN(quantity), MAX(quantity),
+          ROUND(AVG(quantity * 1.0), 2),
+          ROUND(STDEV(quantity * 1.0), 2),
+          SUM(quantity)
+      FROM gold.facts_sales
+      UNION ALL
+      SELECT
+          'price',
+          COUNT(*),
+          COUNT( CASE WHEN price IS NULL THEN 1 END),
+          MIN(price), MAX(price),
+          ROUND(AVG(price * 1.0), 2),
+          ROUND(STDEV(price * 1.0), 2),
+          SUM(price)
+      FROM gold.facts_sales;
 
--- Find the Total Sales
-SELECT SUM(sales_amount) AS total_sales FROM gold.fact_sales
 
--- Find how many items are sold
-SELECT SUM(quantity) AS total_quantity FROM gold.fact_sales
+ -- 4.2 Statistical summary — dim_products numeric columns
+  SELECT
+      'cost' AS measure,
+      COUNT(*)  AS row_count,
+      COUNT(*) FILTER (WHERE cost IS NULL) AS null_count,
+      MIN(cost) AS min_val,
+      MAX(cost) AS max_val,
+      ROUND(AVG(cost * 1.0), 2)    AS avg_val,
+      ROUND(STDDEV(cost * 1.0), 2) AS stddev_val,
+      SUM(cost) AS total
+  FROM gold.dim_products;
 
--- Find the average selling price
-SELECT AVG(price) AS avg_price FROM gold.fact_sales
+  -- 4.3 Price vs cost spread (margin potential per product)
+  SELECT TOP 15
+      p.product_name,
+      p.category,
+      p.cost,
+      ROUND(AVG(f.price * 1.0), 2)                              AS avg_selling_price,
+      ROUND(AVG(f.price * 1.0) - p.cost, 2)                    AS gross_margin_amt,
+      ROUND((AVG(f.price * 1.0) - p.cost) * 100.0
+          / NULLIF(AVG(f.price * 1.0), 0), 1)                  AS gross_margin_pct
+  FROM gold.fact_sales f
+  JOIN gold.dim_products p ON f.product_key = p.product_key
+  WHERE p.cost > 0
+  GROUP BY p.product_name, p.category, p.cost
+  ORDER BY gross_margin_pct DESC;
 
--- Find the Total number of Orders
-SELECT COUNT(order_number) AS total_orders FROM gold.fact_sales
-SELECT COUNT(DISTINCT order_number) AS total_orders FROM gold.fact_sales
 
--- Find the total number of products
-SELECT COUNT(product_name) AS total_products FROM gold.dim_products
-
--- Find the total number of customers
-SELECT COUNT(customer_key) AS total_customers FROM gold.dim_customers;
-
--- Find the total number of customers that has placed an order
-SELECT COUNT(DISTINCT customer_key) AS total_customers FROM gold.fact_sales;
-
--- Generate a Report that shows all key metrics of the business
-SELECT 'Total Sales' AS measure_name, SUM(sales_amount) AS measure_value FROM gold.fact_sales
-UNION ALL
-SELECT 'Total Quantity', SUM(quantity) FROM gold.fact_sales
-UNION ALL
-SELECT 'Average Price', AVG(price) FROM gold.fact_sales
-UNION ALL
-SELECT 'Total Orders', COUNT(DISTINCT order_number) FROM gold.fact_sales
-UNION ALL
-SELECT 'Total Products', COUNT(DISTINCT product_name) FROM gold.dim_products
-UNION ALL
-SELECT 'Total Customers', COUNT(customer_key) FROM gold.dim_customers;
