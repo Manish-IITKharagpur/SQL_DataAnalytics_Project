@@ -12,6 +12,58 @@ SQL Functions Used:
 ===============================================================================
 */
 
+
+
+-- 5.1 Overall business scale
+  SELECT
+      SUM(f.sales_amount)                                        AS total_revenue,
+      COUNT(DISTINCT f.order_number)                             AS total_orders,
+      COUNT(DISTINCT f.customer_key)                             AS total_customers,
+      COUNT(DISTINCT f.product_key)                              AS total_products_sold,
+      SUM(f.quantity)                                            AS total_units_sold,
+      ROUND(SUM(f.sales_amount)
+          / COUNT(DISTINCT f.order_number), 2)                  AS avg_order_value,
+      ROUND(SUM(f.sales_amount) 
+          / COUNT(DISTINCT f.customer_key), 2)                  AS avg_revenue_per_customer
+  FROM gold.facts_sales f
+  WHERE f.order_date IS NOT NULL;
+
+  -- 5.2 Revenue magnitude by country
+  SELECT
+      c.country,
+      SUM(f.sales_amount)             AS total_revenue,
+      COUNT(DISTINCT f.order_number)  AS total_orders,
+      COUNT(DISTINCT f.customer_key)  AS total_customers
+  FROM gold.facts_sales f
+  JOIN gold.dim_customers c ON f.customer_key = c.customer_key
+  WHERE c.country != 'n/a'
+  GROUP BY c.country
+  ORDER BY total_revenue DESC;
+
+  -- 5.3 Revenue magnitude by category
+  SELECT
+      p.category,
+      SUM(f.sales_amount)             AS total_revenue,
+      SUM(f.quantity)                 AS total_units,
+      COUNT(DISTINCT f.order_number)  AS total_orders
+  FROM gold.facts_sales f
+  JOIN gold.dim_products p ON f.product_key = p.product_key
+  WHERE p.category IS NOT NULL
+  GROUP BY p.category
+  ORDER BY total_revenue DESC;
+
+  -- 5.4 Revenue magnitude by year
+  SELECT
+      YEAR(f.order_date)              AS year,
+      COUNT(DISTINCT f.order_number)  AS total_orders,
+      COUNT(DISTINCT f.customer_key)  AS total_customers,
+      SUM(f.sales_amount)             AS total_revenue
+  FROM gold.facts_sales f
+  WHERE f.order_date IS NOT NULL
+  GROUP BY YEAR(f.order_date)
+  ORDER BY total_revenue DESC;
+
+  
 -- Find total customers by countries
 SELECT
     country,
