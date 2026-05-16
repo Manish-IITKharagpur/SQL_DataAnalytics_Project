@@ -1,0 +1,58 @@
+  -- 8.1 Cumulative revenue by month
+  SELECT
+      DATETRUNC(MONTH, order_date)    AS month,
+      SUM(sales_amount)                  AS monthly_revenue,
+      SUM(SUM(sales_amount)) OVER (
+          ORDER BY DATETRUNC(MONTH, order_date)
+          ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+      )                                  AS cumulative_revenue
+  FROM gold.facts_sales
+  WHERE order_date IS NOT NULL
+  GROUP BY DATETRUNC(MONTH,order_date)
+  ORDER BY DATETRUNC(MONTH,order_date) ;
+
+  -- 8.2 Cumulative orders by month
+  SELECT
+      DATETRUNC(MONTH, order_date)    AS month,
+      COUNT(DISTINCT order_number)       AS monthly_orders,
+      SUM(COUNT(DISTINCT order_number)) OVER (
+          ORDER BY DATETRUNC(MONTH, order_date)
+          ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+      )                                  AS cumulative_orders
+  FROM gold.facts_sales
+  WHERE order_date IS NOT NULL
+  GROUP BY DATETRUNC(MONTH,order_date)
+  ORDER BY DATETRUNC(MONTH,order_date);
+
+  -- 8.3 Cumulative unique customers by month (new customers over time)
+  WITH first_orders AS (
+    SELECT customer_key, MIN(order_date) AS first_order_date
+    FROM gold.facts_sales
+    WHERE order_date IS NOT NULL
+    GROUP BY customer_key
+)
+ SELECT
+      DATETRUNC(month, first_order_date)   AS month,
+      COUNT(DISTINCT customer_key)             AS new_customers,
+      SUM(COUNT(DISTINCT customer_key)) OVER (
+          ORDER BY DATETRUNC(month, first_order_date)
+          ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+      )                                        AS cumulative_customers
+  FROM first_orders
+  WHERE customer_key IS NOT NULL  
+  GROUP BY DATETRUNC(month, first_order_date)
+  ORDER BY DATETRUNC(month, first_order_date)
+
+ 
+  -- 8.4 Cumulative revenue by year (running annual total)
+  SELECT
+      YEAR(order_date)    AS year,
+      SUM(sales_amount)   AS yearly_revenue,
+      SUM(SUM(sales_amount)) OVER (
+          ORDER BY YEAR(order_date)
+          ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+      )                   AS cumulative_revenue
+  FROM gold.facts_sales
+  WHERE order_date IS NOT NULL
+  GROUP BY YEAR(order_date)
+  ORDER BY YEAR(order_date);
