@@ -54,3 +54,11 @@ Table Used:
   SELECT * FROM gold.fact_sales    LIMIT 5;
   SELECT * FROM gold.dim_customers LIMIT 5;
   SELECT * FROM gold.dim_products  LIMIT 5;
+
+
+ -- Row counts for all three tables
+ SELECT 'fact_sales'    AS table_name, COUNT(*) AS row_count FROM gold.facts_sales
+ UNION ALL
+ SELECT 'dim_customers' AS table_name, COUNT(*) AS row_count FROM gold.dim_customers
+ UNION ALL
+ SELECT 'dim_products'  AS table_name, COUNT(*) AS row_count FROM gold.dim_products;
