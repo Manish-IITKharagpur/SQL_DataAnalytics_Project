@@ -1,3 +1,15 @@
+  /*
+===============================================================================
+Cumulative Analysis
+===============================================================================
+Purpose:
+    - To calculate running totals or moving averages for key metrics.
+    - To track performance over time cumulatively.
+    - Useful for growth analysis or identifying long-term trends.
+  
+  
+  
+  
   -- 8.1 Cumulative revenue by month
   SELECT
       DATETRUNC(MONTH, order_date)    AS month,
