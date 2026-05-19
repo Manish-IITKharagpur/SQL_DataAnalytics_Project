@@ -322,9 +322,9 @@ Feel free to open an issue or submit a pull request!
 
 **Manish** — Data Analyst | Aspiring Data Engineer
 
-- 💼 [LinkedIn](https://www.linkedin.com/in/your-profile)
+- 💼 [LinkedIn](https://www.linkedin.com/in/manish--raj)
 - 🐙 [GitHub](https://github.com/Manish-IITKharagpur)
-- 📧 [Email](mailto:your.email@example.com)
+- 📧 [Email](mailto:manish.ise.iitkgp@gmail.com)
 
 ---
 
