@@ -26,7 +26,7 @@ Bikes are the overwhelming revenue engine, generating 97-98% of total revenue ac
 **Evidence:** Road was dominant in 2011 ($5.9M vs Mountain's $1.3M) and 2012 ($6.0M vs $4.5M). In 2013, Mountain surged to $12.3M while Road grew modestly to $8.1M -- a crossover gap of $4.1M. Touring also launched meaningfully in 2013 at $3.9M.
 **Implication:** Mountain is the new growth engine. The product line mix shifted fundamentally in 2013. Investment in Mountain assortment, marketing, and category management appears warranted.
 **Confidence:** HIGH
-**Chart:** ![Mountain vs Road](Charts_Explanation/Charts/B_mountain_road_crossover.)
+**Chart:** ![Mountain vs Road](Charts/B_mountain_road_crossover.)
 
 ---
 
@@ -34,7 +34,7 @@ Bikes are the overwhelming revenue engine, generating 97-98% of total revenue ac
 **Evidence:** Mountain active SKUs grew from 14 (2011) to 15 (2012) to 26 (2013) -- a 75% increase in one year. Simultaneously, Mountain revenue per SKU grew from $96K (2011) to $302K (2012) to $461K (2013). Road, by contrast, contracted from 44 SKUs (2012) to 28 (2013) while revenue per SKU grew from $112K to $287K.
 **Implication:** Mountain's growth is not fragile -- it is supported by both breadth (more products) and depth (each product selling more). Road's SKU contraction with rising revenue per SKU suggests a deliberate pruning of underperformers, not market decline.
 **Confidence:** HIGH
-**Chart:** ![SKU Analysis](Charts_Explanation/Charts/D_sku_analysis.png)
+**Chart:** ![SKU Analysis](Charts/D_sku_analysis.png)
 
 ---
 
@@ -42,7 +42,7 @@ Bikes are the overwhelming revenue engine, generating 97-98% of total revenue ac
 **Evidence:** In 2013, Mountain led Road in USA ($4.8M vs $1.6M), Canada ($0.9M vs $0.3M), France ($1.2M vs $0.8M), Germany ($1.4M vs $0.8M), and UK ($1.6M vs $1.1M). Australia is the sole exception: Road leads at $3.2M vs Mountain's $2.4M.
 **Implication:** Mountain's global dominance is not an Australia-driven effect. The USA is the largest Mountain market in absolute terms. Australia's Road preference may represent a different consumer profile or legacy distribution relationship worth investigating.
 **Confidence:** HIGH
-**Chart:** ![Country Breakdown](Charts_Explanation/Charts/C_country_mountain_road.png)
+**Chart:** ![Country Breakdown](Charts/C_country_mountain_road.png)
 
 ---
 
@@ -57,7 +57,7 @@ Bikes are the overwhelming revenue engine, generating 97-98% of total revenue ac
 **Evidence:** Helmets: $676K (58.8% of Accessories). Tires & Tubes: $244K (21.2%). Bottles & Cages: $57K (5.0%). The remaining 5 subcategories each contribute under 5%.
 **Implication:** H3.2 is CONFIRMED. Accessories category growth is concentrated in a single subcategory. Diversifying the accessories assortment -- growing Tires, Hydration, and Bike Racks -- is the primary lever to expand category revenue.
 **Confidence:** HIGH
-**Chart:** ![Accessories Subcategory](Charts_Explanation/Charts/E_accessories_subcategory.png)
+**Chart:** ![Accessories Subcategory](Charts/E_accessories_subcategory.png)
 
 ---
 
