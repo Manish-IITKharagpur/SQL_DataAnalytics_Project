@@ -26,7 +26,7 @@ Bikes are the overwhelming revenue engine, generating 97-98% of total revenue ac
 **Evidence:** Road was dominant in 2011 ($5.9M vs Mountain's $1.3M) and 2012 ($6.0M vs $4.5M). In 2013, Mountain surged to $12.3M while Road grew modestly to $8.1M -- a crossover gap of $4.1M. Touring also launched meaningfully in 2013 at $3.9M.
 **Implication:** Mountain is the new growth engine. The product line mix shifted fundamentally in 2013. Investment in Mountain assortment, marketing, and category management appears warranted.
 **Confidence:** HIGH
-**Chart:** ![Mountain vs Road](Charts/B_mountain_road_crossover.)
+**Chart:** ![Mountain vs Road](Charts/B_mountain_road_crossover.png)
 
 ---
 
