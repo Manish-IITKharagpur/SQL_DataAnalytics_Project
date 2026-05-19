@@ -18,7 +18,11 @@ Bikes are the overwhelming revenue engine, generating 97-98% of total revenue ac
 **Evidence:** In 2011 and 2012, Bikes accounted for 100% of revenue (Accessories and Clothing had <$5K combined). In 2013, Bikes held 93.5%, Accessories 4.3%, Clothing 2.2%. Total 2013 revenue: ~$25.1M from Bikes, $1.1M from Accessories, $559K from Clothing.
 **Implication:** Any headwind to the Bikes business (pricing pressure, supply issues, demand shift) has an outsized impact on total company revenue. The Accessories/Clothing launch in 2013 is the first meaningful step toward diversification, but at 6.5% combined share, it provides minimal insurance today.
 **Confidence:** HIGH (complete data, large sample, no nulls in relevant columns)
+<<<<<<< HEAD
 **Chart:** ![Category Share](Charts\A_category_share.png)
+=======
+**Chart:** ![Category Share](C:\Users\rajma\OneDrive\Desktop\New folder\SQL_DataAnalytics_Project\Charts\A_category_share.png)
+>>>>>>> d0424f4e0f602b48f8e1db06a022df14495e21ed
 
 ---
 
